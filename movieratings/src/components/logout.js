@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { AppContext } from "../context";
+import Button from "react-bootstrap/Button";
 
 export default function LogOut() {
   const { user, dispatchUserEvent } = useContext(AppContext);
@@ -11,5 +12,5 @@ export default function LogOut() {
     history.push("/");
   }
 
-  return <>{user && <button onClick={handleLogout}>Log out</button>}</>;
+  return <>{user && <Button onClick={handleLogout}>Log out</Button>}</>;
 }
