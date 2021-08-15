@@ -1,18 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import useAuth from '../hooks/useAuth';
+import { AppContext } from "../context";
 
 export default function PrivateRoute({ requiresAdmin, children, ...rest}) {
     
-    const { getToken, isAdmin } = useAuth();
+    const { user } = useContext(AppContext);
 
     return (
         <Route {...rest} render={ props => {
 
-            if (requiresAdmin && !isAdmin())
+            if (requiresAdmin && (!user || !user.roles.indexOf("admin") < 0))
                 return <Redirect to="/notanadmin" />
 
-            return (getToken() !== null)
+            return user
                 ? children
                 : <Redirect to={{
                     pathname: "/login",

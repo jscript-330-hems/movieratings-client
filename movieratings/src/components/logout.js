@@ -1,22 +1,15 @@
-import React from 'react';
-import useAuth from '../hooks/useAuth';
-import { useHistory } from 'react-router-dom';
+import React, { useContext } from "react";
+import { useHistory } from "react-router-dom";
+import { AppContext } from "../context";
 
 export default function LogOut() {
+  const { user, dispatchUserEvent } = useContext(AppContext);
+  const history = useHistory();
 
-    const history = useHistory();
-    const { clearUser, getToken } = useAuth();
+  async function handleLogout() {
+    dispatchUserEvent("LOGOUT", null);
+    history.push("/");
+  }
 
-    async function handleLogout() {
-        clearUser();
-          history.push("/")
-      }
-
-    return (
-        <>
-        {getToken() !== null && (
-            <button onClick={handleLogout}>Log out</button>
-        )}
-        </>
-    )
+  return <>{user && <button onClick={handleLogout}>Log out</button>}</>;
 }
