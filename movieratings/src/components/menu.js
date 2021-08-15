@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import LogOut from "./logout";
-import { AppContext } from '../context';
+import { AppContext } from "../context";
 
 export default function Home() {
   const { user } = useContext(AppContext);
@@ -12,8 +12,12 @@ export default function Home() {
       <br />
       <Link to="/movies">List of movies</Link>
       <br />
-      <Link to="/writereview">Write a review</Link>
-      <br />
+      {user && (
+        <>
+          <Link to="/writereview">Write a review</Link>
+          <br />
+        </>
+      )}
 
       {!user && (
         <>
@@ -24,9 +28,9 @@ export default function Home() {
         </>
       )}
 
-    {user && user.roles.indexOf("admin") > -1 && (
+      {user && user.roles.indexOf("admin") > -1 && (
         <Link to="/adminarea">Admin Area</Link>
-    )}
+      )}
       <br />
       {user && <LogOut />}
     </>
