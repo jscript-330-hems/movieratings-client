@@ -7,7 +7,6 @@ import { FormGroup } from "react-bootstrap";
 import Alert from "react-bootstrap/Alert";
 import { Link } from "react-router-dom";
 
-
 export default function SignUp() {
     const [email, setEmail] = useState();
     const history = useHistory();
@@ -15,7 +14,7 @@ export default function SignUp() {
     const [error, setError] = useState();
 
     async function createUser(credentials) {
-        return fetch('http://localhost:5000/login/signup', {
+        return fetch(`${process.env.REACT_APP_SERVICE_BASE_URL}/login/signup`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -53,7 +52,7 @@ export default function SignUp() {
         }
 
         <FormGroup>
-          <Form.Label for="email">Email address</Form.Label>
+          <Form.Label htmlFor="email">Email address</Form.Label>
           <Form.Control
             placeholder="Email address"
             type="email"
@@ -61,13 +60,13 @@ export default function SignUp() {
             class-name="form-control"
             onChange={(e) => setEmail(e.target.value)}
           />
-          <Form.Text class="form-text text-muted">
+          <Form.Text className="form-text text-muted">
             Hint: You can use a fake email address
           </Form.Text>
         </FormGroup>
         <br />
         <FormGroup>
-          <Form.Label for="password">Password</Form.Label>
+          <Form.Label htmlFor="password">Password</Form.Label>
           <Form.Control
             placeholder="Password"
             type="password"
@@ -85,7 +84,7 @@ export default function SignUp() {
         <br />
         
         <Button variant="primary" type="submit">
-          Log in
+          Sign up
         </Button>
       </Form>
       </>

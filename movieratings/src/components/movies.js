@@ -1,13 +1,11 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import MovieList from './movieList';
 
 export default function Movies() {
     const [movies, setMovies] = useState([]);
 
     useEffect(() => {
-        //fetch("https://desolate-dawn-22773.herokuapp.com/movies") // won't work until the service includes CORS
-        fetch("http://localhost:5000/movies")
+        fetch(`${process.env.REACT_APP_SERVICE_BASE_URL}/movies`)
             .then(res => res.json())
             .then(data => setMovies(data))
             .catch(err => console.error(err));
