@@ -8,8 +8,8 @@ export default function Movie({movie}) {
             <Card.Img variant="top" src="https://www.joblo.com/wp-content/uploads/2021/03/tom-jerry-poster-1-400x600.jpg" /> 
             <Card.Body>
                 <Card.Title>{movie.title}</Card.Title>
+                <ReactStars count={5} value={movie.averageScore} edit={false} />
                 <Card.Text>
-                    <ReactStars count={5} value={movie.rating} edit={false} />
                     Released: {movie.releaseYear}<br />
                     Rating: {movie.rating}<br />
                     Actors: {movie.actors}<br />

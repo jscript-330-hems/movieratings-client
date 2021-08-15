@@ -1,16 +1,16 @@
 //https://www.digitalocean.com/community/tutorials/how-to-add-login-authentication-to-react-applications
-import React, { useState } from "react";
-import useAuth from "../hooks/useAuth";
+import React, { useState, useContext } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { FormGroup } from "react-bootstrap";
 import Alert from "react-bootstrap/Alert";
 import { Link } from "react-router-dom";
+import { AppContext } from '../context';
 
 export default function Login() {
+  const { dispatchUserEvent } = useContext(AppContext);
   const [email, setEmail] = useState();
-  const { setToken, setRoles } = useAuth();
   const history = useHistory();
   const location = useLocation();
   const [password, setPassword] = useState();
@@ -18,7 +18,7 @@ export default function Login() {
   const { from } = location.state || { from: { pathname: "/" } };
 
   async function loginUser(credentials) {
-    return fetch("http://localhost:5000/login", {
+    return fetch(`${process.env.REACT_APP_SERVICE_BASE_URL}/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -43,8 +43,7 @@ export default function Login() {
     });
 
     if (response != null) {
-      setToken(response.token);
-      setRoles(response.roles);
+      dispatchUserEvent('LOGIN', response);
       history.replace(from);
     }
   };
@@ -57,7 +56,7 @@ export default function Login() {
         {error && error.length > 0 && <Alert variant="danger">{error}</Alert>}
 
         <FormGroup>
-          <Form.Label for="email">Email address</Form.Label>
+          <Form.Label htmlFor="email">Email address</Form.Label>
           <Form.Control
             placeholder="Email address"
             type="email"
@@ -65,13 +64,13 @@ export default function Login() {
             class-name="form-control"
             onChange={(e) => setEmail(e.target.value)}
           />
-          <Form.Text class="form-text text-muted">
+          <Form.Text className="form-text text-muted">
             Hint: You can use a fake email address
           </Form.Text>
         </FormGroup>
         <br />
         <FormGroup>
-          <Form.Label for="password">Password</Form.Label>
+          <Form.Label htmlFor="password">Password</Form.Label>
           <Form.Control
             placeholder="Password"
             type="password"

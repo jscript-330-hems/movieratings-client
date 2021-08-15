@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import LogOut from "./logout";
-import useAuth from "../hooks/useAuth";
+import { AppContext } from '../context';
 
 export default function Home() {
-  const { getToken, isAdmin } = useAuth();
+  const { user } = useContext(AppContext);
 
   return (
     <>
@@ -15,7 +15,7 @@ export default function Home() {
       <Link to="/writereview">Write a review</Link>
       <br />
 
-      {getToken() === null && (
+      {!user && (
         <>
           <Link to="/signup">Sign up</Link>
           <br />
@@ -24,12 +24,11 @@ export default function Home() {
         </>
       )}
 
-    {isAdmin() && (
+    {user && user.roles.indexOf("admin") > -1 && (
         <Link to="/adminarea">Admin Area</Link>
     )}
       <br />
-      {getToken() !== null && <LogOut />}
-      
+      {user && <LogOut />}
     </>
   );
 }
