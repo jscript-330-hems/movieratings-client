@@ -1,5 +1,6 @@
 import { useEffect, useState, useContext } from "react";
 import { useHistory, useParams } from "react-router-dom";
+import ReviewsList from "./reviewsList";
 import ReactStars from "react-rating-stars-component";
 import { AppContext } from "../context";
 import Table from "react-bootstrap/Table";
@@ -61,6 +62,7 @@ export default function Movie() {
               </tr>
             </tbody>
           </Table>
+          <ReviewsList movieId={id} />
           <Button onClick={() => history.push("/movies")}>
             Back to movie list
           </Button>
