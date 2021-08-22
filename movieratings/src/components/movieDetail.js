@@ -14,6 +14,7 @@ export default function Movie() {
   //https://www.npmjs.com/package/react-stars
   const [movie, setMovie] = useState({});
   const [loading, setLoading] = useState(true);
+  const [reviewsShown, setReviewsShown] = useState(false);
 
   useEffect(() => {
     fetch(`${process.env.REACT_APP_SERVICE_BASE_URL}/movies/${id}`)
@@ -62,16 +63,24 @@ export default function Movie() {
               </tr>
             </tbody>
           </Table>
-          <ReviewsList movieId={id} />
+          
           <Button onClick={() => history.push("/movies")}>
             Back to movie list
           </Button>
           &nbsp;
+          <Button onClick={() => setReviewsShown(!reviewsShown)}>
+            {reviewsShown && <span>Hide Reviews</span>}
+            {!reviewsShown && <span>Show Reviews</span>}
+          </Button>
           {user && (
+            <>
+            &nbsp;
             <Button onClick={() => history.push(`/writereview/${id}`)}>
               Write a review
             </Button>
+            </>
           )}
+          {reviewsShown && <ReviewsList movieId={id} />}
         </>
       )}
     </div>
