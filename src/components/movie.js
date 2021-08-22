@@ -1,6 +1,5 @@
 import { useHistory } from "react-router-dom";
-import Card from "react-bootstrap/card";
-import Button from "react-bootstrap/button";
+import { Card, Button } from "react-bootstrap";
 import ReactStars from "react-rating-stars-component";
 
 export default function Movie({ movie }) {

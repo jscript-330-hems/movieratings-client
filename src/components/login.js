@@ -1,10 +1,7 @@
 //https://www.digitalocean.com/community/tutorials/how-to-add-login-authentication-to-react-applications
 import React, { useState, useContext } from "react";
 import { useHistory, useLocation } from "react-router-dom";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import { FormGroup } from "react-bootstrap";
-import Alert from "react-bootstrap/Alert";
+import { Button, Form, Alert, FormGroup } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { AppContext } from '../context';
 
