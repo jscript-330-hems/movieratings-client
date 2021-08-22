@@ -1,5 +1,7 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/row";
+import Col from "react-bootstrap/col";
 const { useEffect, useState } = require("react");
 
 export default function ReviewsList({ movieId }) {
