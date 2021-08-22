@@ -3,8 +3,7 @@ import { useHistory, useParams } from "react-router-dom";
 import ReviewsList from "./reviewsList";
 import ReactStars from "react-rating-stars-component";
 import { AppContext } from "../context";
-import Table from "react-bootstrap/Table";
-import Button from "react-bootstrap/Button";
+import { Table, Button } from "react-bootstrap";
 
 export default function Movie() {
   const { id } = useParams();
