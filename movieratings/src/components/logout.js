@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { AppContext } from "../context";
-import Button from "react-bootstrap/Button";
+import { Button } from "react-bootstrap";
 
 export default function LogOut() {
   const { user, dispatchUserEvent } = useContext(AppContext);
