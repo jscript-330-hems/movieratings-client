@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import { FormGroup } from "react-bootstrap";
-import Alert from "react-bootstrap/Alert";
+import { Button, Form, FormGroup, Alert } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 export default function SignUp() {
