@@ -8,6 +8,7 @@ import PrivateRoute from "./components/privateRoute";
 import AdminArea from "./components/adminArea";
 import NotAnAdmin from "./components/notAnAdmin";
 import Movies from "./components/movies";
+import MovieDetail from "./components/movieDetail";
 import Menu from "./components/menu";
 import { Container, Row, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -46,6 +47,7 @@ function App() {
               <Route path="/login" component={Login} />
               <Route path="/notanadmin" component={NotAnAdmin} />
               <Route path="/movies" component={Movies} />
+              <Route path="/moviedetail/:id" component={MovieDetail} />
               <PrivateRoute path="/writereview">
                 <WriteReview />
               </PrivateRoute>
