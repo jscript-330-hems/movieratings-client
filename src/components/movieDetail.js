@@ -41,7 +41,7 @@ export default function Movie() {
                       value={movie.averageScore}
                       edit={false}
                     />{" "}
-                    (avg {movie.averageScore} out of {movie.reviewCount} reviews)
+                    (avg {Math.round(movie.averageScore * 100) / 100} out of {movie.reviewCount} reviews)
                   </td>
                 </tr>
                 <tr>

@@ -11,7 +11,6 @@ import Movies from "./components/movies";
 import MovieDetail from "./components/movieDetail";
 import Theaters from "./components/theaters";
 import Menu from "./components/menu";
-import { Container, Row, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useState } from "react";
 import { AppContext } from "./context";
@@ -53,7 +52,7 @@ function App() {
           <Route path="/movies" component={Movies} />
           <Route path="/theaters" component={Theaters}/>
           <Route path="/moviedetail/:id" component={MovieDetail} />
-          <PrivateRoute path="/writereview">
+          <PrivateRoute path="/writereview/:id?">
             <WriteReview />
           </PrivateRoute>
           <PrivateRoute requiresAdmin={true} path="/adminarea">
