@@ -1,8 +1,6 @@
 import React from "react";
 import Movie from "./movie";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/row";
-import Col from "react-bootstrap/col";
+import {Container, Row, Col} from "react-bootstrap";
 
 export default function Movies({ movies }) {
   return (

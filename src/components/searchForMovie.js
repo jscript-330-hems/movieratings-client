@@ -1,11 +1,5 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
-
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import { FormGroup } from "react-bootstrap";
-import Alert from "react-bootstrap/Alert";
-import { Link } from "react-router-dom";
+import { Button, Form, FormGroup, Alert } from "react-bootstrap";
 import MovieList from "./movieList";
 
 export default function SearchForMovie() {
@@ -43,6 +37,7 @@ export default function SearchForMovie() {
     setMovies(response);
   };
 
+
   return (
     <>
       <h3>Search for a movie</h3>
@@ -64,7 +59,11 @@ export default function SearchForMovie() {
         </FormGroup>
         <br />
 
-        <Button variant="primary" type="submit">
+        <Button 
+            style={{color: "black", backgroundColor: "#e3f2fd", borderColor: "#e3f2fd"}}
+          variant="primary" 
+          type="submit"
+        >
           Search
         </Button>
       </Form>
@@ -75,3 +74,5 @@ export default function SearchForMovie() {
     </>
   );
 }
+
+

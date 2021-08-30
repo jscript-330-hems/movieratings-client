@@ -9,56 +9,55 @@ import AdminArea from "./components/adminArea";
 import NotAnAdmin from "./components/notAnAdmin";
 import Movies from "./components/movies";
 import MovieDetail from "./components/movieDetail";
+import Theaters from "./components/theaters";
 import Menu from "./components/menu";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useState } from "react";
-import { AppContext } from './context';
+import { AppContext } from "./context";
+import {Helmet} from 'react-helmet';
+
 
 function App() {
   const [user, setUser] = useState(null);
 
   const dispatchUserEvent = (actionType, payload) => {
     switch (actionType) {
-      case 'LOGIN':
+      case "LOGIN":
         setUser(payload);
         sessionStorage.setItem("token", payload.token);
         return;
-      case 'LOGOUT':
+      case "LOGOUT":
         setUser(null);
         sessionStorage.clear();
         return;
       default:
         return;
     }
-  }
+  };
 
   return (
+    
     <AppContext.Provider value={{ user, dispatchUserEvent }}>
-      <Router>
-        <Container>
-          <Row>
-            <Col sm={2}>
-              <Menu></Menu>
-            </Col>
-            <Col sm={10}>
-              <Route path="/" exact={true} component={Home} />
-              <Route path="/signup" component={SignUp} />
-              <Route path="/login" component={Login} />
-              <Route path="/notanadmin" component={NotAnAdmin} />
-              <Route path="/movies" component={Movies} />
-              <Route path="/moviedetail/:id" component={MovieDetail} />
-              <PrivateRoute path="/writereview">
-                <WriteReview />
-              </PrivateRoute>
-              <PrivateRoute requiresAdmin={true} path="/adminarea">
-                <AdminArea />
-              </PrivateRoute>
-            </Col>
-          </Row>
-        </Container>
+      <div className="application">
+            <Helmet>
+                <style>{'body { background-color: #FAF9F6; }'}</style>
+            </Helmet>
+      </div>
+        <Router>
+          <Menu />
+          <Route path="/" exact={true} component={Home} />
+          <Route path="/signup" component={SignUp} />
+          <Route path="/login" component={Login} />
+          <Route path="/notanadmin" component={NotAnAdmin} />
+          <Route path="/movies" component={Movies} />
+          <Route path="/theaters" component={Theaters}/>
+          <Route path="/moviedetail/:id" component={MovieDetail} />
+          <PrivateRoute path="/writereview/:id?">
+            <WriteReview />
+          </PrivateRoute>
+          <PrivateRoute requiresAdmin={true} path="/adminarea">
+            <AdminArea />
+          </PrivateRoute>
       </Router>
     </AppContext.Provider>
   );
