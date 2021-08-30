@@ -13,34 +13,32 @@ import Menu from "./components/menu";
 import { Container, Row, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useState } from "react";
-import { AppContext } from './context';
+import { AppContext } from "./context";
 
 function App() {
   const [user, setUser] = useState(null);
 
   const dispatchUserEvent = (actionType, payload) => {
     switch (actionType) {
-      case 'LOGIN':
+      case "LOGIN":
         setUser(payload);
         sessionStorage.setItem("token", payload.token);
         return;
-      case 'LOGOUT':
+      case "LOGOUT":
         setUser(null);
         sessionStorage.clear();
         return;
       default:
         return;
     }
-  }
+  };
 
   return (
     <AppContext.Provider value={{ user, dispatchUserEvent }}>
       <Router>
         <Container>
+          <Menu />
           <Row>
-            <Col sm={2}>
-              <Menu></Menu>
-            </Col>
             <Col sm={10}>
               <Route path="/" exact={true} component={Home} />
               <Route path="/signup" component={SignUp} />
