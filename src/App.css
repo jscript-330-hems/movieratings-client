@@ -2,10 +2,16 @@
   text-align: center;
 }
 
-html,
-body {
+html, body {
   margin: 0px;
   padding: 0px;
+  background-color: #FAF9F6;
+}
+
+.button {
+  color: black; 
+  background-color: #e3f2fd;
+  border-color: #e3f2fd;
 }
 
 .navbar {
@@ -21,4 +27,16 @@ body {
   margin-right: 30px;
   text-decoration: none;
   color: black;
+}
+
+.cardContainer {
+  display: flex;
+  flex-direction: row;
+  flex-flow: row wrap;
+  width: 990px;
+}
+
+.cardContainer > div {
+  width: 470px;
+  height: auto;
 }

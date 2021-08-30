@@ -8,13 +8,17 @@ export default function Menu() {
 
   return (
     <>
-      <nav className="navbar navbar-expand-lg bg-primary">
+      <nav className="navbar navbar-light" style={{backgroundColor: '#e3f2fd', marginBottom:"20px"}}>
         <Link className="menuLink" to="/">
           Home
         </Link>
         <br />
         <Link className="menuLink" to="/movies">
-          List of movies
+          Movies
+        </Link>
+        <br />
+        <Link className="menuLink" to="/theaters">
+          Theaters
         </Link>
         <br />
         {user && (
@@ -25,20 +29,18 @@ export default function Menu() {
             <br />
           </>
         )}
-
         {!user && (
           <>
             <Link className="menuLink" to="/signup">
               Sign up
             </Link>
             <br />
-            <Link className="menuLink" to="/login">
+            <Link className="menuLink bi bi-person-circle me-2" to="/login">
               Log in
             </Link>
             <br />
           </>
         )}
-
         {user && user.roles.indexOf("admin") > -1 && (
           <Link className="menuLink" to="/adminarea">
             Admin Area
