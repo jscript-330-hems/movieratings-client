@@ -60,7 +60,7 @@ export default function SearchForMovie() {
         <br />
 
         <Button 
-            style={{color: "black", backgroundColor: "#e3f2fd", borderColor: "#e3f2fd"}}
+            style={{color: "black", backgroundColor: "#e3f2fd", borderColor: "#e3f2fd", marginBottom: "15px"}}
           variant="primary" 
           type="submit"
         >
