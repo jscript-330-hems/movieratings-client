@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import MovieList from "./movieList";
+import { Container } from "react-bootstrap";
 
 export default function Movies() {
   const [movies, setMovies] = useState([]);
@@ -13,9 +14,11 @@ export default function Movies() {
 
   return (
     <>
-      <h1>Movies</h1>
-      <p>Below is a list of movies</p>
-      <MovieList movies={movies}></MovieList>
+      <Container style={{ width: "60%" }}>
+        <h1 className="center">Movies</h1>
+        <p className="center">Below is a list of movies</p>
+        <MovieList movies={movies}></MovieList>
+      </Container>
     </>
   );
 }

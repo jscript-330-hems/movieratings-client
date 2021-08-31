@@ -20,7 +20,7 @@ export default function SearchForMovie() {
         },
       }
     ).then((data) => {
-        setHasSearched(true);
+      setHasSearched(true);
       setLoading(false);
       if (data.status !== 200) {
         setError("This error happened: " + data.statusText);
@@ -36,7 +36,6 @@ export default function SearchForMovie() {
     console.log(response);
     setMovies(response);
   };
-
 
   return (
     <>
@@ -59,20 +58,23 @@ export default function SearchForMovie() {
         </FormGroup>
         <br />
 
-        <Button 
-            style={{color: "black", backgroundColor: "#e3f2fd", borderColor: "#e3f2fd"}}
-          variant="primary" 
+        <Button
+          style={{
+            color: "black",
+            backgroundColor: "#e3f2fd",
+            borderColor: "#e3f2fd",
+            marginBottom: "15px",
+          }}
+          variant="primary"
           type="submit"
         >
           Search
         </Button>
       </Form>
-      {movies.length > 0 && !loading && (
-          <MovieList movies={movies}></MovieList>
+      {movies.length > 0 && !loading && <MovieList movies={movies}></MovieList>}
+      {movies.length === 0 && !loading && hasSearched && (
+        <div>No movies found.</div>
       )}
-      {movies.length === 0 && !loading && hasSearched && (<div>No movies found.</div>)}
     </>
   );
 }
-
-

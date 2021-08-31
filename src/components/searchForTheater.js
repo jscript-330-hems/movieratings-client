@@ -20,7 +20,7 @@ export default function SearchForMovie() {
         },
       }
     ).then((data) => {
-        setHasSearched(true);
+      setHasSearched(true);
       setLoading(false);
       if (data.status !== 200) {
         setError("This error happened: " + data.statusText);
@@ -37,7 +37,6 @@ export default function SearchForMovie() {
     setTheaters(response);
   };
 
-
   return (
     <>
       <h3>Search for nearby theaters</h3>
@@ -48,7 +47,7 @@ export default function SearchForMovie() {
           <Form.Label htmlFor="query">Search</Form.Label>
           <Form.Control
             placeholder="Enter a zipcode"
-            type="text"
+            type="number"
             name="query"
             class-name="form-control"
             onChange={(e) => setSearch(e.target.value)}
@@ -59,19 +58,25 @@ export default function SearchForMovie() {
         </FormGroup>
         <br />
 
-        <Button 
-            style={{color: "black", backgroundColor: "#e3f2fd", borderColor: "#e3f2fd"}}
-          variant="primary" 
+        <Button
+          style={{
+            color: "black",
+            backgroundColor: "#e3f2fd",
+            borderColor: "#e3f2fd",
+            marginBottom: "15px",
+          }}
+          variant="primary"
           type="submit"
         >
           Search
         </Button>
       </Form>
       {theaters.length > 0 && !loading && (
-          <TheaterList theaters={theaters}></TheaterList>
+        <TheaterList theaters={theaters}></TheaterList>
       )}
-      {theaters.length === 0 && !loading && hasSearched && (<div>No movies found.</div>)}
+      {theaters.length === 0 && !loading && hasSearched && (
+        <div>No theaters found.</div>
+      )}
     </>
   );
 }
-
