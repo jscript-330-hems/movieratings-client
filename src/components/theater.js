@@ -1,21 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { Card, Button } from "react-bootstrap";
-import MovieListForTheater from "./movieListForTheater";
-import { useParams } from "react-router-dom";
-
+import { Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
 export default function Theater({ theater }) {
-  const [movie, setMovie] = useState([]);
-  const { id } = useParams();
-
-  
+  const [movies, setMovies] = useState([]);
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_SERVICE_BASE_URL}/theaters/${id}/movies`)
+    fetch(
+      `${process.env.REACT_APP_SERVICE_BASE_URL}/theaters/${theater._id}/movies`
+    )
       .then((res) => res.json())
-      .then((data) => setMovie(data.map(({ title, _id }) => ({ title: title, _id: _id }))))
-      .then()
+      .then((data) => {
+        setMovies(data);
+      })
       .catch((err) => console.error(err));
-  }, [id]);
-
+  }, [theater._id]);
   return (
     <div className="card mb-3" style={{ maxWidth: "540px" }}>
       <div className="row no-gutters">
@@ -25,11 +22,19 @@ export default function Theater({ theater }) {
             <Card.Text>
               <small className="text-muted">Zipcode: {theater.zip}</small>
             </Card.Text>
-            <Card.Text>
-              <small className="text-muted">Movies: {theater.movies} </small>
-            </Card.Text>
+            <small className="text-muted">
+              <strong>Movies:</strong>
+              <ul>
+                {movies.map((m) => {
+                  return (
+                    <li key={m._id}>
+                      <Link to={`/moviedetail/${m._id}`}>{m.title}</Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </small>
           </Card.Body>
-          <MovieListForTheater movieId={id} />
         </div>
       </div>
     </div>
