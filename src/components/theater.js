@@ -14,13 +14,21 @@ export default function Theater({ theater }) {
       .catch((err) => console.error(err));
   }, [theater._id]);
   return (
-    <div className="card mb-3" style={{ maxWidth: "540px" }}>
+    <div className="card mb-3 theaterCard" style={{ padding: "10px" }}>
       <div className="row no-gutters">
-        <div className="col-md-8">
-          <Card.Body style={{ padding: "5px" }}>
+        <div>
+          <Card.Body style={{ padding: "0px" }}>
+            <img
+              style={{ height: "100px", width: "100%", objectFit: "cover" }}
+              src={theater.theaterPicUrl}
+              className="card-img"
+              alt={theater.theaterPicUrl}
+            />
             <Card.Title>{theater.name}</Card.Title>
             <Card.Text>
-              <small className="text-muted">Zipcode: {theater.zip}</small>
+              <small className="text-muted">
+                <strong>Zipcode:</strong> {theater.zip}
+              </small>
             </Card.Text>
             <small className="text-muted">
               <strong>Movies:</strong>
@@ -28,7 +36,9 @@ export default function Theater({ theater }) {
                 {movies.map((m) => {
                   return (
                     <li key={m._id}>
-                      <Link to={`/moviedetail/${m._id}`}>{m.title}</Link>
+                      <Link className="movieLink" to={`/moviedetail/${m._id}`}>
+                        {m.title}
+                      </Link>
                     </li>
                   );
                 })}

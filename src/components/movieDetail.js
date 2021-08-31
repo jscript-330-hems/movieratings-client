@@ -3,33 +3,42 @@ import { useHistory, useParams } from "react-router-dom";
 import ReviewsList from "./reviewsList";
 import ReactStars from "react-rating-stars-component";
 import { AppContext } from "../context";
-import { Table, Button } from "react-bootstrap";
+import { Table, Button, Container } from "react-bootstrap";
 
 export default function Movie() {
-    const { id } = useParams();
-    const history = useHistory();
-    const { user } = useContext(AppContext);
-  
-    //https://www.npmjs.com/package/react-stars
-    const [movie, setMovie] = useState({});
-    const [loading, setLoading] = useState(true);
-    const [reviewsShown, setReviewsShown] = useState(false);
-  
-    useEffect(() => {
-      fetch(`${process.env.REACT_APP_SERVICE_BASE_URL}/movies/${id}`)
-        .then((res) => res.json())
-        .then((data) => setMovie(data))
-        .catch((err) => console.error(err))
-        .finally(() => setLoading(false));
-    }, [id]);
-  
-    return (
+  const { id } = useParams();
+  const history = useHistory();
+  const { user } = useContext(AppContext);
+
+  //https://www.npmjs.com/package/react-stars
+  const [movie, setMovie] = useState({});
+  const [loading, setLoading] = useState(true);
+  const [reviewsShown, setReviewsShown] = useState(false);
+
+  useEffect(() => {
+    fetch(`${process.env.REACT_APP_SERVICE_BASE_URL}/movies/${id}`)
+      .then((res) => res.json())
+      .then((data) => setMovie(data))
+      .catch((err) => console.error(err))
+      .finally(() => setLoading(false));
+  }, [id]);
+
+  return (
+    <Container
+      style={{
+        width: "60%",
+        display: "flex",
+        justifyContent: "center",
+        flexDirection: "column",
+      }}
+    >
       <div>
         {loading && <div>Still loading...</div>}
         {!loading && !movie && <div>Done loading but no movie. Hmm. Weird</div>}
         {!loading && movie && (
           <>
             <h1>{movie.title}</h1>
+            <br />
             <img alt={movie.title} src={movie.moviePicUrl} />
             <Table>
               <tbody>
@@ -41,7 +50,8 @@ export default function Movie() {
                       value={movie.averageScore}
                       edit={false}
                     />{" "}
-                    (avg {Math.round(movie.averageScore * 100) / 100} out of {movie.reviewCount} reviews)
+                    (avg {Math.round(movie.averageScore * 100) / 100} out of{" "}
+                    {movie.reviewCount} reviews)
                   </td>
                 </tr>
                 <tr>
@@ -62,26 +72,47 @@ export default function Movie() {
                 </tr>
               </tbody>
             </Table>
-            
-            <Button onClick={() => history.push("/movies")}>
+            <Button
+              onClick={() => history.push("/movies")}
+              style={{
+                color: "black",
+                backgroundColor: "#e3f2fd",
+                borderColor: "#e3f2fd",
+              }}
+            >
               Back to movie list
             </Button>
             &nbsp;
-            <Button onClick={() => setReviewsShown(!reviewsShown)}>
+            <Button
+              onClick={() => setReviewsShown(!reviewsShown)}
+              style={{
+                color: "black",
+                backgroundColor: "#e3f2fd",
+                borderColor: "#e3f2fd",
+              }}
+            >
               {reviewsShown && <span>Hide Reviews</span>}
               {!reviewsShown && <span>Show Reviews</span>}
             </Button>
             {user && (
               <>
-              &nbsp;
-              <Button onClick={() => history.push(`/writereview/${id}`)}>
-                Write a review
-              </Button>
+                &nbsp;
+                <Button
+                  onClick={() => history.push(`/writereview/${id}`)}
+                  style={{
+                    color: "black",
+                    backgroundColor: "#e3f2fd",
+                    borderColor: "#e3f2fd",
+                  }}
+                >
+                  Write a review
+                </Button>
               </>
             )}
             {reviewsShown && <ReviewsList movieId={id} />}
           </>
         )}
       </div>
-    );
-  }
+    </Container>
+  );
+}

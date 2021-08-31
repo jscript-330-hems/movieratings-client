@@ -3,7 +3,7 @@ import React, { useState, useContext } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import { Button, Form, Alert, FormGroup, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { AppContext } from '../context';
+import { AppContext } from "../context";
 
 export default function Login() {
   const { dispatchUserEvent } = useContext(AppContext);
@@ -40,14 +40,14 @@ export default function Login() {
     });
 
     if (response != null) {
-      dispatchUserEvent('LOGIN', response);
+      dispatchUserEvent("LOGIN", response);
       history.replace(from);
     }
   };
 
   return (
     <>
-    <Container style={{width:"40%"}}>
+      <Container style={{ width: "40%" }}>
         <h1>Log in</h1>
         <br />
         <Form onSubmit={handleSubmit}>
@@ -85,7 +85,16 @@ export default function Login() {
             </Form.Text>
           </FormGroup>
           <br />
-          <Button variant="primary" type="submit">
+          <Button
+            variant="primary"
+            type="submit"
+            style={{
+              color: "black",
+              backgroundColor: "#e3f2fd",
+              borderColor: "#e3f2fd",
+              marginBottom: "15px",
+            }}
+          >
             Log in
           </Button>
         </Form>

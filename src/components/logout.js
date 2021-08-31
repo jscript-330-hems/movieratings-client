@@ -12,5 +12,20 @@ export default function LogOut() {
     history.push("/");
   }
 
-  return <>{user && <Button onClick={handleLogout}>Log out</Button>}</>;
+  return (
+    <>
+      {user && (
+        <Button
+          style={{
+            color: "black",
+            backgroundColor: "#e3f2fd",
+            borderColor: "#e3f2fd",
+          }}
+          onClick={handleLogout}
+        >
+          Log out
+        </Button>
+      )}
+    </>
+  );
 }

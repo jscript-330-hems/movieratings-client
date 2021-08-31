@@ -14,9 +14,9 @@ export default function Theaters() {
 
   return (
     <>
-      <Container style={{width:"60%"}}>
-        <h1>Theaters</h1>
-        <p>Below is a list of theaters</p>
+      <Container style={{ width: "60%" }}>
+        <h1 className="center">Theaters</h1>
+        <p className="center">Below is a list of theaters</p>
         <TheaterList theaters={theaters}></TheaterList>
       </Container>
     </>

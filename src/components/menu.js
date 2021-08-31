@@ -8,10 +8,17 @@ export default function Menu() {
 
   return (
     <>
-      <nav className="navbar navbar-light" style={{backgroundColor: '#e3f2fd', marginBottom:"20px"}}>
-        <Link className="menuLink" to="/">
-          Home
-        </Link>
+      <nav
+        className="navbar navbar-light"
+        style={{ backgroundColor: "#e3f2fd", marginBottom: "20px" }}
+      >
+        <br />
+        <div className="homeImgContainer">
+          <div className="bi bi-film menuLink"></div>
+          <Link className="menuLink" to="/">
+            Home
+          </Link>
+        </div>
         <br />
         <Link className="menuLink" to="/movies">
           Movies
@@ -24,7 +31,7 @@ export default function Menu() {
         {user && (
           <>
             <Link className="menuLink" to="/writereview">
-              Write a review
+              Write a Review
             </Link>
             <br />
           </>
@@ -32,12 +39,16 @@ export default function Menu() {
         {!user && (
           <>
             <Link className="menuLink" to="/signup">
-              Sign up
+              Sign Up
             </Link>
             <br />
-            <Link className="menuLink bi bi-person-circle me-2" to="/login">
-              Log in
-            </Link>
+            <div className="loginImgContainer">
+              <div className="bi bi-person-circle me-2 menuLink"></div>
+              <Link className="menuLink" to="/login">
+                Log In
+              </Link>
+            </div>
+
             <br />
           </>
         )}

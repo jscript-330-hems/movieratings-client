@@ -6,12 +6,36 @@ html, body {
   margin: 0px;
   padding: 0px;
   background-color: #FAF9F6;
+  padding-bottom: 15px;
+  font-family: Helvetica, sans-serif;
 }
 
 .button {
   color: black; 
   background-color: #e3f2fd;
   border-color: #e3f2fd;
+}
+
+.theaterCard {
+  min-height: 400px;
+  display: flex;
+  flex-wrap: wrap;
+  min-width: 500px; 
+}
+
+.movieCard {
+  min-height: 400px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.center {
+  text-align: center;
+}
+
+.movieLink {
+  color: gray;
+  text-decoration: none;
 }
 
 .navbar {
@@ -22,11 +46,24 @@ html, body {
   left: 0px;
 }
 
-.navbar > .menuLink {
+.navbar > .menuLink, .menuLink {
   margin-left: 30px;
   margin-right: 30px;
   text-decoration: none;
   color: black;
+}
+
+.loginImgContainer, .homeImgContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.loginImgContainer > .menuLink{
+  margin-left: 0px;
+}
+
+.homeImgContainer > .menuLink{
+  margin-right: -15px;
 }
 
 .cardContainer {
@@ -39,4 +76,12 @@ html, body {
 .cardContainer > div {
   width: 470px;
   height: auto;
+}
+
+.reviewContainer {
+  display: flex;
+}
+
+.reviewContainer > div {
+  padding: 10px;
 }
