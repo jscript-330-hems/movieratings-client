@@ -2,16 +2,17 @@
   text-align: center;
 }
 
-html, body {
+html,
+body {
   margin: 0px;
   padding: 0px;
-  background-color: #FAF9F6;
+  background-color: #faf9f6;
   padding-bottom: 15px;
   font-family: Helvetica, sans-serif;
 }
 
 .button {
-  color: black; 
+  color: black;
   background-color: #e3f2fd;
   border-color: #e3f2fd;
 }
@@ -20,7 +21,7 @@ html, body {
   min-height: 400px;
   display: flex;
   flex-wrap: wrap;
-  min-width: 500px; 
+  min-width: 500px;
 }
 
 .movieCard {
@@ -46,23 +47,25 @@ html, body {
   left: 0px;
 }
 
-.navbar > .menuLink, .menuLink {
+.navbar > .menuLink,
+.menuLink {
   margin-left: 30px;
   margin-right: 30px;
   text-decoration: none;
   color: black;
 }
 
-.loginImgContainer, .homeImgContainer {
+.loginImgContainer,
+.homeImgContainer {
   display: flex;
   flex-direction: row;
 }
 
-.loginImgContainer > .menuLink{
+.loginImgContainer > .menuLink {
   margin-left: 0px;
 }
 
-.homeImgContainer > .menuLink{
+.homeImgContainer > .menuLink {
   margin-right: -15px;
 }
 
@@ -84,4 +87,16 @@ html, body {
 
 .reviewContainer > div {
   padding: 10px;
+}
+
+.adminFeatures {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.adminFeatures > div {
+  margin-left: 30px;
+  margin-right: 30px;
+  width: 30%;
 }

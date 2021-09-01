@@ -1,5 +1,8 @@
 import React from "react";
 import { Container } from "react-bootstrap";
+import EditTheater from "./editTheater";
+import DeleteTheater from "./deleteTheater";
+import AddTheater from "./addTheater";
 
 export default function AdminArea() {
   return (
@@ -12,6 +15,11 @@ export default function AdminArea() {
           flexDirection: "column",
         }}
       >
+        <div className="adminFeatures">
+          <EditTheater></EditTheater>
+          <DeleteTheater></DeleteTheater>
+          <AddTheater></AddTheater>
+        </div>
         <h1 style={{ textAlign: "center" }}>Admin Area</h1>
         <br />
         <p>
