@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Button, Alert } from "react-bootstrap";
-import EditTheaterMovies from "./editTheaterMovies";
 
 export default function EditTheater() {
   const [theaters, setTheaters] = useState([]);
   const [theaterId, setTheaterId] = useState();
   const [name, setName] = useState();
   const [zip, setZip] = useState();
-  const [movies, setMovies] = useState();
+  const [movies, setMovies] = useState([]);
+  const [displayedMovies, setDisplayedMovies] = useState([]);
   const [error, setError] = useState();
   const [status, setStatus] = useState(undefined);
+  let index;
 
   const { id } = useParams();
   useEffect(() => {
@@ -19,6 +20,15 @@ export default function EditTheater() {
       .then((data) =>
         setTheaters(data.map(({ name, _id }) => ({ name: name, _id: _id })))
       )
+      .catch((err) => console.error(err));
+  }, []);
+
+  useEffect(() => {
+    fetch(`${process.env.REACT_APP_SERVICE_BASE_URL}/movies`)
+      .then((res) => res.json())
+      .then((data) => {
+        setDisplayedMovies(data);
+      })
       .catch((err) => console.error(err));
   }, []);
 
@@ -57,7 +67,14 @@ export default function EditTheater() {
   const handleChange = async (e) => {
     e.preventDefault();
     setTheaterId(e.target.value);
-    return <EditTheaterMovies theater={theaterId}></EditTheaterMovies>;
+  };
+
+  const handleChecked = (e) => {
+    const { checked, value } = e.currentTarget;
+
+    setMovies((prev) =>
+      checked ? [...prev, value] : prev.filter((val) => val !== value)
+    );
   };
 
   const handleSubmit = async (e) => {
@@ -72,7 +89,7 @@ export default function EditTheater() {
 
   return (
     <div>
-      <h1 style={{ textAlign: "center" }}>Edit a Theater</h1>
+      <h3 style={{ textAlign: "center" }}>Edit a Theater</h3>
       <br />
       <div style={{ display: "flex", justifyContent: "center" }}>
         <br />
@@ -101,7 +118,28 @@ export default function EditTheater() {
                 </select>
               </td>
             </tr>
-
+            <tr>
+              <div style={{ marginRight: "-140px" }}>
+                <p>Movies:</p>
+                <div>
+                  {displayedMovies.map((movie) => {
+                    return (
+                      <div>
+                        <input
+                          type="checkbox"
+                          id={movie._id}
+                          name={movie.title}
+                          value={movie._id}
+                          onChange={handleChecked}
+                        />
+                        <label for={movie._id}>{movie.title}</label>
+                      </div>
+                    );
+                  })}
+                </div>
+                <br />
+              </div>
+            </tr>
             <tr>
               <td>
                 <label for="name">Theater Name:</label>

@@ -7,7 +7,8 @@ export default function AddTheater() {
   const [theaterId, setTheaterId] = useState();
   const [name, setName] = useState();
   const [zip, setZip] = useState();
-  const [movies, setMovies] = useState();
+  const [movies, setMovies] = useState([]);
+  const [displayedMovies, setDisplayedMovies] = useState([]);
   const [error, setError] = useState();
   const [status, setStatus] = useState(undefined);
 
@@ -17,6 +18,15 @@ export default function AddTheater() {
       .then((data) =>
         setTheaters(data.map(({ name, _id }) => ({ name: name, _id: _id })))
       )
+      .catch((err) => console.error(err));
+  }, []);
+
+  useEffect(() => {
+    fetch(`${process.env.REACT_APP_SERVICE_BASE_URL}/movies`)
+      .then((res) => res.json())
+      .then((data) => {
+        setDisplayedMovies(data);
+      })
       .catch((err) => console.error(err));
   }, []);
 
@@ -49,6 +59,14 @@ export default function AddTheater() {
       .catch((error) => setStatus({ type: "error", error }));
   }
 
+  const handleChecked = (e) => {
+    const { checked, value } = e.currentTarget;
+
+    setMovies((prev) =>
+      checked ? [...prev, value] : prev.filter((val) => val !== value)
+    );
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     await addTheater({
@@ -61,7 +79,7 @@ export default function AddTheater() {
 
   return (
     <div>
-      <h1 style={{ textAlign: "center" }}>Add a Theater</h1>
+      <h3 style={{ textAlign: "center" }}>Add a Theater</h3>
       <br />
       <div style={{ display: "flex", justifyContent: "center" }}>
         <br />
@@ -69,6 +87,28 @@ export default function AddTheater() {
           {error && error.length > 0 && <Alert variant="danger">{error}</Alert>}
 
           <table>
+            <tr>
+              <div style={{ marginRight: "-180px" }}>
+                <p>Movies:</p>
+                <div>
+                  {displayedMovies.map((movie) => {
+                    return (
+                      <div>
+                        <input
+                          type="checkbox"
+                          id={movie._id}
+                          name={movie.title}
+                          value={movie._id}
+                          onChange={handleChecked}
+                        />
+                        <label for={movie._id}>{movie.title}</label>
+                      </div>
+                    );
+                  })}
+                </div>
+                <br />
+              </div>
+            </tr>
             <tr>
               <td>
                 <label for="name">Theater Name:</label>
