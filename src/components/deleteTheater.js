@@ -66,7 +66,7 @@ export default function DeleteTheater() {
   return (
     <>
       <div>
-        <h1 style={{ textAlign: "center" }}>Delete a Theater</h1>
+        <h3 style={{ textAlign: "center" }}>Delete a Theater</h3>
         <br />
         <div style={{ display: "flex", justifyContent: "center" }}>
           <br />
